@@ -13,27 +13,37 @@ import java.math.BigDecimal;
 public class OrderDetail {
     @Id
     private String orderId;
-    private String itemCode;
-    private int orderQty;
-    private BigDecimal discount;
-    private BigDecimal total;
     @ManyToOne
     private Orders order;
     @ManyToOne
     private Item item;
+    private int orderQty;
+    private BigDecimal discount;
+    private double unitPrice;
+    private BigDecimal total;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(String orderId, String itemCode, int orderQty, BigDecimal discount, BigDecimal total, Orders order, Item item) {
-        this.orderId = orderId;
-        this.itemCode = itemCode;
-        this.orderQty = orderQty;
-        this.discount = discount;
-        this.total = total;
+    public OrderDetail(Orders order, Item item, int orderQty, BigDecimal discount, double unitPrice, BigDecimal total) {
         this.order = order;
         this.item = item;
+        this.orderQty = orderQty;
+        this.discount = discount;
+        this.unitPrice = unitPrice;
+        this.total = total;
     }
+
+    public OrderDetail(String orderId, Orders order, Item item, int orderQty, BigDecimal discount, double unitPrice, BigDecimal total) {
+        this.orderId = orderId;
+        this.order = order;
+        this.item = item;
+        this.orderQty = orderQty;
+        this.discount = discount;
+        this.unitPrice = unitPrice;
+        this.total = total;
+    }
+
 
     public String getOrderId() {
         return orderId;
@@ -41,38 +51,6 @@ public class OrderDetail {
 
     public void setOrderId(String orderId) {
         this.orderId = orderId;
-    }
-
-    public String getItemCode() {
-        return itemCode;
-    }
-
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
-    }
-
-    public int getOrderQty() {
-        return orderQty;
-    }
-
-    public void setOrderQty(int orderQty) {
-        this.orderQty = orderQty;
-    }
-
-    public BigDecimal getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(BigDecimal discount) {
-        this.discount = discount;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
     }
 
     public Orders getOrder() {
@@ -91,16 +69,50 @@ public class OrderDetail {
         this.item = item;
     }
 
+    public int getOrderQty() {
+        return orderQty;
+    }
+
+    public Object setOrderQty(int orderQty) {
+        this.orderQty = orderQty;
+        return null;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public Object setDiscount(BigDecimal discount) {
+        this.discount = discount;
+        return null;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public BigDecimal getTotal() {
+        return total;
+    }
+
+    public void setTotal(BigDecimal total) {
+        this.total = total;
+    }
+
     @Override
     public String toString() {
         return "OrderDetail{" +
                 "orderId='" + orderId + '\'' +
-                ", itemCode='" + itemCode + '\'' +
-                ", orderQty=" + orderQty +
-                ", discount=" + discount +
-                ", total=" + total +
                 ", order=" + order +
                 ", item=" + item +
+                ", orderQty=" + orderQty +
+                ", discount=" + discount +
+                ", unitPrice=" + unitPrice +
+                ", total=" + total +
                 '}';
     }
 }

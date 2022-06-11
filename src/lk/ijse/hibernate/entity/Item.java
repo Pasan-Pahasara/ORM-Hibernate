@@ -17,7 +17,7 @@ public class Item {
     private String itemCode;
     private String description;
     private String packSize;
-    private BigDecimal unitPrice;
+    private double unitPrice;
     private int qtyOnHand;
     @OneToMany(mappedBy = "item")
     private List<OrderDetail> orderDetailList = new ArrayList<>();
@@ -25,7 +25,15 @@ public class Item {
     public Item() {
     }
 
-    public Item(String itemCode, String description, String packSize, BigDecimal unitPrice, int qtyOnHand, List<OrderDetail> orderDetailList) {
+    public Item(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand) {
+        this.itemCode = itemCode;
+        this.description = description;
+        this.packSize = packSize;
+        this.unitPrice = unitPrice;
+        this.qtyOnHand = qtyOnHand;
+    }
+
+    public Item(String itemCode, String description, String packSize, double unitPrice, int qtyOnHand, List<OrderDetail> orderDetailList) {
         this.itemCode = itemCode;
         this.description = description;
         this.packSize = packSize;
@@ -33,6 +41,7 @@ public class Item {
         this.qtyOnHand = qtyOnHand;
         this.orderDetailList = orderDetailList;
     }
+
 
     public String getItemCode() {
         return itemCode;
@@ -58,11 +67,11 @@ public class Item {
         this.packSize = packSize;
     }
 
-    public BigDecimal getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(double unitPrice) {
         this.unitPrice = unitPrice;
     }
 

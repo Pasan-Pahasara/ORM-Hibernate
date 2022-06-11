@@ -25,6 +25,12 @@ public class Orders {
     public Orders() {
     }
 
+    public Orders(String orderId, LocalDate orderDate, Customer cusId) {
+        this.orderId = orderId;
+        this.orderDate = orderDate;
+        this.cusId = cusId;
+    }
+
     public Orders(String orderId, LocalDate orderDate, Customer cusId, List<OrderDetail> orderDetailList) {
         this.orderId = orderId;
         this.orderDate = orderDate;
