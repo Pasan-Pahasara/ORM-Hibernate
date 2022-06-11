@@ -2,7 +2,11 @@ package lk.ijse.hibernate.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Pasan Pahasara
@@ -13,15 +17,19 @@ public class Orders {
     @Id
     private String orderId;
     private LocalDate orderDate;
-    private String cusId;
+    @ManyToOne
+    private Customer cusId;
+    @OneToMany(mappedBy = "order")
+    private List<OrderDetail> orderDetailList =new ArrayList<>();
 
     public Orders() {
     }
 
-    public Orders(String orderId, LocalDate orderDate, String cusId) {
+    public Orders(String orderId, LocalDate orderDate, Customer cusId, List<OrderDetail> orderDetailList) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.cusId = cusId;
+        this.orderDetailList = orderDetailList;
     }
 
     public String getOrderId() {
@@ -40,12 +48,20 @@ public class Orders {
         this.orderDate = orderDate;
     }
 
-    public String getCusId() {
+    public Customer getCusId() {
         return cusId;
     }
 
-    public void setCusId(String cusId) {
+    public void setCusId(Customer cusId) {
         this.cusId = cusId;
+    }
+
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
     }
 
     @Override
@@ -53,7 +69,8 @@ public class Orders {
         return "Orders{" +
                 "orderId='" + orderId + '\'' +
                 ", orderDate=" + orderDate +
-                ", cusId='" + cusId + '\'' +
+                ", cusId=" + cusId +
+                ", orderDetailList=" + orderDetailList +
                 '}';
     }
 }

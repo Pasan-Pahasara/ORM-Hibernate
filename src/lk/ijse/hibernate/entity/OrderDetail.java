@@ -2,6 +2,7 @@ package lk.ijse.hibernate.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 
 /**
@@ -16,16 +17,22 @@ public class OrderDetail {
     private int orderQty;
     private BigDecimal discount;
     private BigDecimal total;
+    @ManyToOne
+    private Orders order;
+    @ManyToOne
+    private Item item;
 
     public OrderDetail() {
     }
 
-    public OrderDetail(String orderId, String itemCode, int orderQty, BigDecimal discount, BigDecimal total) {
+    public OrderDetail(String orderId, String itemCode, int orderQty, BigDecimal discount, BigDecimal total, Orders order, Item item) {
         this.orderId = orderId;
         this.itemCode = itemCode;
         this.orderQty = orderQty;
         this.discount = discount;
         this.total = total;
+        this.order = order;
+        this.item = item;
     }
 
     public String getOrderId() {
@@ -68,6 +75,22 @@ public class OrderDetail {
         this.total = total;
     }
 
+    public Orders getOrder() {
+        return order;
+    }
+
+    public void setOrder(Orders order) {
+        this.order = order;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
     @Override
     public String toString() {
         return "OrderDetail{" +
@@ -76,6 +99,8 @@ public class OrderDetail {
                 ", orderQty=" + orderQty +
                 ", discount=" + discount +
                 ", total=" + total +
+                ", order=" + order +
+                ", item=" + item +
                 '}';
     }
 }

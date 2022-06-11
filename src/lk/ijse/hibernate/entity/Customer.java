@@ -2,6 +2,9 @@ package lk.ijse.hibernate.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Pasan Pahasara
@@ -17,6 +20,8 @@ public class Customer {
     private String city;
     private String province;
     private String postalCode;
+    @OneToMany(mappedBy = "cusId")
+    private final List<Orders> ordersList = new ArrayList<>();
 
     public Customer() {
     }
@@ -87,6 +92,10 @@ public class Customer {
         this.postalCode = postalCode;
     }
 
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -97,6 +106,7 @@ public class Customer {
                 ", city='" + city + '\'' +
                 ", province='" + province + '\'' +
                 ", postalCode='" + postalCode + '\'' +
+                ", ordersList=" + ordersList +
                 '}';
     }
 }

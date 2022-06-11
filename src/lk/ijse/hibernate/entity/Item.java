@@ -2,7 +2,10 @@ package lk.ijse.hibernate.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author : Pasan Pahasara
@@ -16,16 +19,19 @@ public class Item {
     private String packSize;
     private BigDecimal unitPrice;
     private int qtyOnHand;
+    @OneToMany(mappedBy = "item")
+    private List<OrderDetail> orderDetailList = new ArrayList<>();
 
     public Item() {
     }
 
-    public Item(String itemCode, String description, String packSize, BigDecimal unitPrice, int qtyOnHand) {
+    public Item(String itemCode, String description, String packSize, BigDecimal unitPrice, int qtyOnHand, List<OrderDetail> orderDetailList) {
         this.itemCode = itemCode;
         this.description = description;
         this.packSize = packSize;
         this.unitPrice = unitPrice;
         this.qtyOnHand = qtyOnHand;
+        this.orderDetailList = orderDetailList;
     }
 
     public String getItemCode() {
@@ -68,6 +74,14 @@ public class Item {
         this.qtyOnHand = qtyOnHand;
     }
 
+    public List<OrderDetail> getOrderDetailList() {
+        return orderDetailList;
+    }
+
+    public void setOrderDetailList(List<OrderDetail> orderDetailList) {
+        this.orderDetailList = orderDetailList;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
@@ -76,6 +90,7 @@ public class Item {
                 ", packSize='" + packSize + '\'' +
                 ", unitPrice=" + unitPrice +
                 ", qtyOnHand=" + qtyOnHand +
+                ", orderDetailList=" + orderDetailList +
                 '}';
     }
 }
