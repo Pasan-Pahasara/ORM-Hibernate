@@ -32,7 +32,7 @@ public class AppInitializer {
 //        System.out.println(session.get(Customer.class,"C-001"));
 
         //for delete
-//        session.delete(session.get(Customer.class,"C-001"));
+//        session.delete(session.load(Customer.class,"C-001"));
 
         /**CRUD Item*/
 
@@ -46,7 +46,7 @@ public class AppInitializer {
 //        System.out.println(session.get(Item.class,"I-001"));
 
         //for delete
-//        session.delete(session.get(Item.class,"I-001"));
+//        session.delete(session.load(Item.class,"I-001"));
 
         /**CRUD Orders*/
 
@@ -74,7 +74,7 @@ public class AppInitializer {
 //        }
 
         //for delete
-//        session.delete(session.get(OrderDetail.class,"O-001"));
+//        session.delete(session.load(OrderDetail.class,"O-001"));
 
 
         transaction.commit();
